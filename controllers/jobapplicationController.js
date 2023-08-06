@@ -101,7 +101,7 @@ class JobApplicationController {
     try {
       const id = req.params.id;
 
-      const jobapplication = await JobApplication.findOne({
+      const jobapplication = await JobApplication.findAll({
         where: {
           job_listing_id: id,
         },
