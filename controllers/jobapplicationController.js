@@ -72,9 +72,10 @@ class JobApplicationController {
     try {
       const statusNew = req.query.status;
       const jobId = req.params.id;
+      const {user_id} = req.body
 
       const application = await JobApplication.findOne({
-        where: { job_listing_id: jobId },
+        where: { job_listing_id: jobId, user_id }
       });
 
       if (!application) {
@@ -88,7 +89,7 @@ class JobApplicationController {
           status: statusNew,
           // resume: application.resume,
         },
-        { where: { job_listing_id: jobId } }
+        { where: { job_listing_id: jobId, user_id } }
       );
 
       res.status(201).json({ message: "Update success" });
